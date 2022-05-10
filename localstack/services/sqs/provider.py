@@ -166,8 +166,25 @@ class SqsMessage:
         self.first_received = None
         self.deleted = False
         self.priority = priority
-        self.message_deduplication_id = message_deduplication_id
-        self.message_group_id = message_group_id
+
+        attributes = {}
+        if message_group_id is not None:
+            attributes["MessageGroupId"] = message_group_id
+        if message_deduplication_id is not None:
+            attributes["MessageDeduplicationId"] = message_deduplication_id
+
+        if self.message.get("Attributes"):
+            self.message["Attributes"].update(attributes)
+        else:
+            self.message["Attributes"] = attributes
+
+    @property
+    def message_group_id(self) -> Optional[str]:
+        return self.message["Attributes"].get("MessageGroupId")
+
+    @property
+    def message_deduplication_id(self) -> Optional[str]:
+        return self.message["Attributes"].get("MessageDeduplicationId")
 
     @property
     def is_visible(self):
