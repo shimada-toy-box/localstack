@@ -1208,7 +1208,10 @@ class TestSNSProvider:
         topic_arn = sns_create_topic(Name=topic_name, Attributes={"FifoTopic": "true"})["TopicArn"]
         queue_url = sqs_create_queue(
             QueueName=queue_name,
-            Attributes={"FifoQueue": "true"},
+            Attributes={
+                "FifoQueue": "true",
+                "ContentBasedDeduplication": "true",
+            },
         )
 
         sns_subscription(
@@ -1260,7 +1263,6 @@ class TestSNSProvider:
                 MessageAttributeNames=["All"],
                 AttributeNames=["All"],
                 MaxNumberOfMessages=10,
-                VisibilityTimeout=0,
             )
             assert len(response["Messages"]) == 3
             for message in response["Messages"]:
@@ -1434,7 +1436,10 @@ class TestSNSProvider:
         topic_arn = sns_create_topic(Name=topic_name, Attributes={"FifoTopic": "true"})["TopicArn"]
         queue_url = sqs_create_queue(
             QueueName=queue_name,
-            Attributes={"FifoQueue": "true"},
+            Attributes={
+                "FifoQueue": "true",
+                "ContentBasedDeduplication": "true",
+            },
         )
 
         queue_arn = sqs_queue_arn(queue_url)
