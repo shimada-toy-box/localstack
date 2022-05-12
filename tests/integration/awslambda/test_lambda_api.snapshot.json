@@ -1,18 +1,23 @@
 {
   "tests/integration/awslambda/test_lambda_api.py::TestLambdaAsfApi::test_basic_invoke": {
     "lambda_create_fn": {
-      "ResponseMetadata": "<response-metadata>",
-      "FunctionName": "<name>",
+      "ResponseMetadata": {
+        "HTTPStatusCode": 201,
+        "HTTPHeaders": {
+          "content-type": "application/json"
+        }
+      },
+      "FunctionName": "ls-fn-93fafc39",
       "FunctionArn": "<arn>",
       "Runtime": "python3.9",
       "Role": "<arn>",
       "Handler": "index.handler",
-      "CodeSize": 277,
+      "CodeSize": 276,
       "Description": "",
       "Timeout": 3,
       "MemorySize": 128,
       "LastModified": "<date>",
-      "CodeSha256": "<sha>",
+      "CodeSha256": "<sha-256>",
       "Version": "$LATEST",
       "TracingConfig": {
         "Mode": "PassThrough"
@@ -30,9 +35,14 @@
       }
     },
     "lambda_get_fn": {
-      "ResponseMetadata": "<response-metadata>",
+      "ResponseMetadata": {
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+          "content-type": "application/json"
+        }
+      },
       "Configuration": {
-        "FunctionName": "<name:1>",
+        "FunctionName": "ls-fn-93fafc39",
         "FunctionArn": "<arn>",
         "Runtime": "python3.9",
         "Role": "<arn>",
@@ -42,7 +52,7 @@
         "Timeout": 3,
         "MemorySize": 128,
         "LastModified": "<date>",
-        "CodeSha256": "<sha>",
+        "CodeSha256": "<sha-256>",
         "Version": "$LATEST",
         "TracingConfig": {
           "Mode": "PassThrough"
@@ -64,8 +74,13 @@
       }
     },
     "lambda_invoke_result": {
-      "ResponseMetadata": "<response-metadata>",
-      "StatusCode": 201,
+      "ResponseMetadata": {
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+          "content-type": "application/json"
+        }
+      },
+      "StatusCode": 200,
       "ExecutedVersion": "$LATEST",
       "Payload": "{}"
     }
